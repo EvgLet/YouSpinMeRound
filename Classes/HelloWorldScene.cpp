@@ -1,6 +1,9 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
+#include "Window.h"
 #include <iostream>
+#include <base/ccUtils.h>
+
 
 USING_NS_CC;
 
@@ -72,6 +75,11 @@ bool HelloWorld::init()
 
     // add the sprite as a child to this layer
     this->addChild(sprite, 0);
+
+	Window* w = Window::create();
+	auto rect = utils::getCascadeBoundingBox(w);
+	w->setPosition(Vec2(visibleSize.width / 2 - rect.size.width / 2, visibleSize.height / 2 - rect.size.height / 2));
+	addChild(w);
     
     return true;
 }
